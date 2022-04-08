@@ -78,7 +78,7 @@ public class ConsulterDiag extends JFrame {
         btnNewButton_1.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		setVisible(false);
-        		new CHoix(c).setVisible(true);
+        		new ChoixConsult(c).setVisible(true);
         	}
         });
         btnNewButton_1.setBackground(Color.BLUE);

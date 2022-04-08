@@ -10,13 +10,13 @@ import javax.swing.JPanel;
 import java.awt.Color;
 import java.awt.Font;
 
-public class CHoix extends JFrame {
+public class ChoixConsult extends JFrame {
 
     /**
      * Create the frame.
      */
 
-    public CHoix(Client c) {
+    public ChoixConsult(Client c) {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 729, 476);
         JPanel contentPane = new JPanel();

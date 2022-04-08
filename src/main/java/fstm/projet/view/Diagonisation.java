@@ -5,27 +5,26 @@ import fstm.projet.model.bo.Client;
 import fstm.projet.model.bo.Maladie_chronique;
 import fstm.projet.model.bo.Region;
 import fstm.projet.model.bo.Symptoms;
-import fstm.projet.model.dao.DAOClient;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.util.Vector;
 
-public class AcueilSTT extends javax.swing.JFrame {
+public class Diagonisation extends javax.swing.JFrame {
 
 
     /**
      * Creates new form NewJFrame1
      */
-    public AcueilSTT(fstm.projet.model.bo.Client c, double temp, Region r) {
+    public Diagonisation(fstm.projet.model.bo.Client c, double temp, Region r) {
         myclient = c;
         temperature = temp;
         region = r;
         initComponents();
     }
 
-    public AcueilSTT() {
+    public Diagonisation() {
         initComponents();
     }
 
@@ -167,9 +166,8 @@ public class AcueilSTT extends javax.swing.JFrame {
         jButton4.addActionListener(this::jButton4ActionPerformed);
         jButton5.addActionListener(evt -> jButton5ActionPerformed());
         jButton6.addActionListener(e -> {
-            myclient = new DAOClient().Authentification(myclient.getCmptCompte().getEmail(), myclient.getCmptCompte().getPassword());
             setVisible(false);
-            new CHoix(myclient).setVisible(true);
+            new ConsulterDiag(myclient).setVisible(true);
         });
 
 
@@ -253,7 +251,7 @@ public class AcueilSTT extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AcueilSTT.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Diagonisation.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -264,7 +262,7 @@ public class AcueilSTT extends javax.swing.JFrame {
             @Override
             public void run() {
 
-                new AcueilSTT().setVisible(true);
+                new Diagonisation().setVisible(true);
             }
         });
     }

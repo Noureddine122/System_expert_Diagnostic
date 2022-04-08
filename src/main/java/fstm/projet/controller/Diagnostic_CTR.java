@@ -1,21 +1,22 @@
 package fstm.projet.controller;
 
 import com.itextpdf.text.*;
+import com.itextpdf.text.Font;
 import com.itextpdf.text.pdf.PdfWriter;
 import fstm.projet.model.bo.*;
-import fstm.projet.view.Acueil;
-import fstm.projet.view.AcueilSTT;
+import fstm.projet.view.Diagonisation;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import java.awt.*;
 import java.io.*;
 import java.net.Socket;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Vector;
+import java.util.*;
+import java.util.List;
 
 
 public class Diagnostic_CTR {
@@ -89,7 +90,7 @@ public static void rempliTable(DefaultTableModel model,Client c) {
 }
 */
 
-    private static final String host = "172.17.36.48";
+    private static final String host = "172.17.36.160";
     private static final int port = 6000;
 
     public Diagnostic_CTR() {
@@ -99,7 +100,7 @@ public static void rempliTable(DefaultTableModel model,Client c) {
 
     public static void charger_dia(Client c, double temperature, Region r) throws IOException, ClassNotFoundException {
 
-        AcueilSTT fram1 = new AcueilSTT(c, temperature, r);
+        Diagonisation fram1 = new Diagonisation(c, temperature, r);
 
         fram1.setVisible(true);
     }
@@ -391,20 +392,53 @@ return daoClient.Authentification(email, passString);*/
     }
 
 
-    public static void rempliTableRegion(DefaultTableModel model) {
+    public static void rempliTableRegion(DefaultTableModel model,JTable t) {
         try {
+            List<Color> rowColours = Arrays.asList(
+                    Color.RED,
+                    Color.GREEN,
+                    Color.CYAN
+            );
+            CustomRenderer colouringTable = new CustomRenderer();
+
             for (Region reg : afficheRe()) {
                 model.addRow(new String[]{reg.getNom_region(), reg.getNombre_contamines() + "", reg.getNombre_deces() + "", reg.getNombre_geuris() + ""});
+                colouringTable.setColors(Color.GREEN);
                 System.out.println(reg);
             }
-        } catch (ClassNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (IOException e) {
+
+            //t.getColumnModel().getColumn(1).setCellRenderer(colouringTable);
+
+
+
+        } catch (ClassNotFoundException | IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
+    }
+}
+class CustomRenderer extends DefaultTableCellRenderer
+{
+    private ArrayList<Color> desiredColors = new ArrayList<Color>();
 
+    public void setColors(Color incomingColor)
+    {
+        desiredColors.add(incomingColor);
+    }
+
+    @Override
+    public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column)
+    {
+        Component cellComponent = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+        for (int i = 0; i < 3; i++) {
+            /*if(row == i){
+                cellComponent.setBackground(desiredColors.get(i));
+            }*/
+            cellComponent.setBackground(Color.RED);
+
+        }
+
+        return cellComponent;
     }
 }

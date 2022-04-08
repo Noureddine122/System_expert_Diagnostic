@@ -125,7 +125,7 @@ public class FRCreerCom extends JFrame {
 				e1.printStackTrace();
 			}
 			 setVisible(false);
-			 new Authen().setVisible(true);
+			 new Authentification().setVisible(true);
 				
 				
 				

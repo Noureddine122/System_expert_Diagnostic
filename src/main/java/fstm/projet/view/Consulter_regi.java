@@ -1,20 +1,14 @@
 package fstm.projet.view;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import fstm.projet.controller.Diagnostic_CTR;
 import fstm.projet.model.bo.Client;
 
-import javax.swing.JTabbedPane;
 import javax.swing.JTable;
-import javax.swing.ScrollPaneConstants;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -55,7 +49,7 @@ public class Consulter_regi extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				new CHoix(c).setVisible(true);
+				new ChoixConsult(c).setVisible(true);
 			}
 		});
 		btnNewButton.setBounds(283, 386, 85, 21);
@@ -71,10 +65,10 @@ public class Consulter_regi extends JFrame {
 		model.addRow(new String[] {"Nom region","Nombre de contaminees","Nombre de deces ","Nombre de gueries"});
 		table = new JTable();
 		table.setBounds(47, 77, 629, 281);
-		
-		
-		Diagnostic_CTR.rempliTableRegion(model);
+
 		table.setModel(model);
+
+		Diagnostic_CTR.rempliTableRegion(model,table);
 		table.setRowHeight(27);
 		contentPane.add(table);
 		

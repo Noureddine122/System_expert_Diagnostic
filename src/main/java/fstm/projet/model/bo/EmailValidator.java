@@ -1,4 +1,4 @@
-package fstm.projet.view;
+package fstm.projet.model.bo;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

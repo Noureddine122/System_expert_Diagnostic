@@ -115,7 +115,7 @@ public class ClientConsultation extends javax.swing.JFrame {
         jButton2.setText("Annuler");
         jButton2.addActionListener(evt -> {
             setVisible(false);
-            new CHoix(c).setVisible(true);
+            new ChoixConsult(c).setVisible(true);
         });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

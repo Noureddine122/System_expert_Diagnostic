@@ -2,6 +2,7 @@ package fstm.projet.view;
 
 
 import fstm.projet.controller.Diagnostic_CTR;
+import fstm.projet.model.bo.EmailValidator;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -12,7 +13,7 @@ import java.io.IOException;
 /**
  * @author noureddine
  */
-public class Authen extends JFrame {
+public class Authentification extends JFrame {
 
     private final JTextField emailField;
     private final JPasswordField textpasswd;
@@ -23,7 +24,7 @@ public class Authen extends JFrame {
      * Launch the application.
      */
     public static void main(String[] args) {
-        Authen frame = new Authen();
+        Authentification frame = new Authentification();
         frame.setUndecorated(true);
         frame.setVisible(true);
     }
@@ -33,7 +34,7 @@ public class Authen extends JFrame {
     /**
      * Create the frame.
      */
-    public Authen() {
+    public Authentification() {
         setBackground(Color.WHITE);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 729, 476);
@@ -72,7 +73,7 @@ public class Authen extends JFrame {
 
                 int x = arg0.getXOnScreen();
                 int y = arg0.getYOnScreen();
-                Authen.this.setLocation(x - xx, y - xy);
+                Authentification.this.setLocation(x - xx, y - xy);
             }
         });
         label.setBounds(-38, 0, 420, 275);
@@ -130,7 +131,7 @@ public class Authen extends JFrame {
                     if (Diagnostic_CTR.authClient(emailString, passString) != null) {
                         try {
                             setVisible(false);
-                            new CHoix(Diagnostic_CTR.authClient(emailString, passString)).setVisible(true);
+                            new ChoixConsult(Diagnostic_CTR.authClient(emailString, passString)).setVisible(true);
                         } catch (ClassNotFoundException | IOException e1) {
                             // TODO Auto-generated catch block
                             e1.printStackTrace();
