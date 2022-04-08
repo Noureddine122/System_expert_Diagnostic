@@ -13,7 +13,7 @@ public class ClientConsultation extends javax.swing.JFrame {
     /**
      * Creates new form Acueil
      */
-    public ClientConsultation(Client c ) {
+    public ClientConsultation(Client c) {
         initComponents(c);
     }
 
@@ -165,7 +165,7 @@ public class ClientConsultation extends javax.swing.JFrame {
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         DefaultComboBoxModel<Region> M = new DefaultComboBoxModel<Region>();
-        ArrayList<Region> regions=null;
+        ArrayList<Region> regions = null;
         try {
             regions = Diagnostic_CTR.afficheRe();
         } catch (ClassNotFoundException e1) {
@@ -181,8 +181,8 @@ public class ClientConsultation extends javax.swing.JFrame {
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JComboBox<Region> x = (JComboBox<Region>)evt.getSource();
-                r =(Region) x.getSelectedItem();
+                JComboBox<Region> x = (JComboBox<Region>) evt.getSource();
+                r = (Region) x.getSelectedItem();
                 System.out.println(r);
             }
         });
@@ -190,27 +190,20 @@ public class ClientConsultation extends javax.swing.JFrame {
         pack();
         jButton1.addActionListener(e -> {
             try {
-                T= Double.parseDouble(jTextField1.getText());
-                //date= (Calendar) jDateChooser1.getCalendar();
-                // Client c= new Client(1,"Ahbella","Houda",true, T,   r, date,"houda@gmail.com","houda123");
-                //Diagnostic_CTR.insertClient(c);
+                T = Double.parseDouble(jTextField1.getText());
 
-                if(r==null)
-                {
+
+                if (r == null) {
                     JOptionPane.showMessageDialog(jButton1, "Vous n'avez pas pr�cisez la r�gion", "Warnings", JOptionPane.ERROR_MESSAGE);
-                }
-                else if(T<38){
+                } else if (T < 38) {
                     JOptionPane.showMessageDialog(jButton1, "Vous n'etes pas malade", "Warnings", JOptionPane.ERROR_MESSAGE);
-                }
-                else
-                {
+                } else {
                     System.out.println(c);
                     setVisible(false);
                     Diagnostic_CTR.updateClient(c, T, r);
 
                 }
-            }
-            catch(Exception EX) {
+            } catch (Exception EX) {
                 JOptionPane.showMessageDialog(jButton1, "Temperature invalide ", "Warnings", JOptionPane.ERROR_MESSAGE);
                 System.out.println(EX.toString());
             }

@@ -33,8 +33,7 @@ public class ChoixConsult extends JFrame {
             setVisible(false);
             new ConsulterDiag(c).setVisible(true);
         });
-        //btnNewButton.setForeground(Color.WHITE);
-        //btnNewButton.setBackground(Color.BLUE);
+
         btnNewButton.setBounds(22, 146, 151, 173);
         contentPane.add(btnNewButton);
 

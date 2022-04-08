@@ -65,13 +65,7 @@ public class Client implements Serializable {
         this.diagnostics = diagnostics;
     }
 
-    /* public Region getRegion() {
-         return region;
-     }
-     public void setRegion(Region region) {
-         this.region = region;
-     }
- */
+
     public int getId_Client() {
         return Id_Client;
     }
@@ -105,12 +99,6 @@ public class Client implements Serializable {
         Sexe = sexe;
     }
 
-   /* public double getTempareture() {
-        return Tempareture;
-    }
-    public void setTempareture(double tempareture) {
-        Tempareture = tempareture;
-    }*/
 
 
     public Client(int Id_Cl, String N, String Pr, Boolean S, double T, Region r, Calendar a, String email, String password) {
@@ -119,8 +107,7 @@ public class Client implements Serializable {
         Nom = N;
         Prenom = Pr;
         Sexe = S;
-       /* Tempareture = T;
-        region = r;*/
+
         int age = -1;
         Calendar today = Calendar.getInstance();
 

@@ -45,9 +45,7 @@ public class SocketController implements Runnable {
             } else if (objInput instanceof Socketinter socke) {
                 System.out.println("Traiting socketintern.................");
                 diagoniser(socke);
-            }/*else if(objInput instanceof SocketUpdate socke){
-                ClientUpdate(socke);
-            }*/ else if (objInput instanceof Symptoms) {
+            }else if (objInput instanceof Symptoms) {
                 sendSymptoms();
             } else if (objInput instanceof Region) {
                 sendRegions();
@@ -87,11 +85,7 @@ public class SocketController implements Runnable {
         oos.writeObject(daoSymptom.retreive());
     }
 
-    /*private void ClientUpdate(SocketUpdate socke) {
-        DAOClient daoClient=new DAOClient();
-        daoClient.updateClient(socke.getClient(),socke.getTemp(),socke.getReg());
-        System.out.println("Bien appdate");
-    }*/
+
 
     private void diagoniser(Socketinter socke) throws IOException {
         DroolsTest d = new DroolsTest();
@@ -115,7 +109,6 @@ public class SocketController implements Runnable {
         String message;
         diag.set_possi_presence(resu);
         new DAOClient().updateDiagnostique(diag, socke.MyClient.getCmptCompte().getEmail());
-        //new DAODiagnostic().insert(diag);
         os = socket.getOutputStream();
         oos = new ObjectOutputStream(os);
         System.out.println("Sending values to the ServerSocket");

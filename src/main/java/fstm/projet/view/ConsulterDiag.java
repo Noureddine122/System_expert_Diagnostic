@@ -66,20 +66,20 @@ public class ConsulterDiag extends JFrame {
         btnNewButton.addActionListener(e -> new ClientConsultation(c).setVisible(true));
         btnNewButton.setBounds(262, 355, 222, 31);
         contentPane.add(btnNewButton);
-        
+
         JLabel lblNewLabel = new JLabel("Mes diagnostic");
         lblNewLabel.setBackground(Color.WHITE);
         lblNewLabel.setForeground(Color.BLUE);
         lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 30));
         lblNewLabel.setBounds(213, 30, 277, 31);
         contentPane.add(lblNewLabel);
-        
+
         JButton btnNewButton_1 = new JButton("Retour");
         btnNewButton_1.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		setVisible(false);
-        		new ChoixConsult(c).setVisible(true);
-        	}
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                new ChoixConsult(c).setVisible(true);
+            }
         });
         btnNewButton_1.setBackground(Color.BLUE);
         btnNewButton_1.setForeground(Color.WHITE);

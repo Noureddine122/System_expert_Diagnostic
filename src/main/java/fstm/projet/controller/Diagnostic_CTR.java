@@ -1,7 +1,6 @@
 package fstm.projet.controller;
 
 import com.itextpdf.text.*;
-import com.itextpdf.text.Font;
 import com.itextpdf.text.pdf.PdfWriter;
 import fstm.projet.model.bo.*;
 import fstm.projet.view.Diagonisation;
@@ -10,85 +9,15 @@ import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import java.awt.*;
 import java.io.*;
 import java.net.Socket;
-import java.util.*;
-import java.util.List;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Vector;
 
 
 public class Diagnostic_CTR {
-/*	
-	public Diagnostic_CTR()
-	{
-		
-		 
-	}
-	public static void charger_dia(Client c) {
-		
-		Acueil fram1= new Acueil(c);
-		fram1.setVisible(true);
-	}
-public static void diagoniser(Client c,Vector<Symptoms> sys,Vector<Maladie_chronique> mal) {
-	Docteur doc=new Docteur(1,"alami","ahmed");
- 	
-	 DroolsTest	d= new DroolsTest();
-	 c.setMaladies(mal);
-	 new DAOClient().updateMaladie(mal, c.getCmptCompte().getEmail());
-	 
-	 Diagnostic diag = new Diagnostic(1,c,sys,doc);
-	
-	 double resu=d.Start_Rules(diag);
-	 diag.set_possi_presence(resu);
-	 Acueil.Resul.setText(resu*100 + " %100");
-	 new DAODiagnostic().insert(diag);
-	 new DAOClient().updateDiagnostique(diag,c.getCmptCompte().getEmail() );
-	 
-		if(d.isEnvoy(doc)==true)
-		JOptionPane.showMessageDialog(null, "possibilite de presence : " 
-		+ resu*100 + " %100 vous etes une cas d'urgence !! vos informations ont envoyées aux autorités comptétentes",
-		"Diagnostic", JOptionPane.INFORMATION_MESSAGE);
-		else JOptionPane.showMessageDialog( null,"possibilite de presence : " 
-				+ resu*100 + " %100","Diagnostic", JOptionPane.INFORMATION_MESSAGE);
-	 
-	 
-	 
-}
-public static ArrayList<Symptoms> afficheSy(){
-	DAOSymptom daoSymptom=new DAOSymptom();
-	return daoSymptom.retreive();
-}
-public static ArrayList<Region> afficheRe(){
-	DAORegion deDaoRegion=new DAORegion();
-	return deDaoRegion.retreiveR();
-}
-public static void insertClient(String nom,String prenom,Boolean sexe,Calendar date,String email,String password) {
-	Compte cmpCompte=new Compte(email, password);
-	Client cli=new Client(nom, prenom, sexe, date, cmpCompte);
-	DAOClient daoClient=new DAOClient();
-	daoClient.insert(cli);
-}
-public static void updateClient(Client c,double temp,Region reg) {
-	DAOClient daoClient=new DAOClient();
-	daoClient.updateClient(c, temp, reg);
-	charger_dia(c);
-	
-	
-}
-public static Client authClient (String email,String passString){
-	DAOClient daoClient=new DAOClient();
-return daoClient.Authentification(email, passString);
-	
-}
-public static void rempliTable(DefaultTableModel model,Client c) {
-	for(Diagnostic diag:c.getDiagnostics()) {
-		model.addRow(new String[] {diag.getDate().toString(),""+diag.get_possi_presence()});
-		System.out.println(diag);
-	}
-}
-*/
 
     private static final String host = "172.17.36.160";
     private static final int port = 6000;
@@ -121,30 +50,6 @@ public static void rempliTable(DefaultTableModel model,Client c) {
         String obj1 = (String) ois.readObject();
 
         JOptionPane.showMessageDialog(null, obj1, "Diagnostic", JOptionPane.INFORMATION_MESSAGE);
-		/*Docteur doc=new Docteur(1,"alami","ahmed");
- 	
-	 DroolsTest	d= new DroolsTest();
-	 c.setMaladies(mal);
-	 new DAOClient().updateMaladie(mal, c.getCmptCompte().getEmail());
-	 
-	 Diagnostic diag = new Diagnostic(1,c,sys,doc);
-	
-	 double resu=d.Start_Rules(diag);
-	 diag.set_possi_presence(resu);
-	 Acueil.Resul.setText(resu*100 + " %100");
-	 new DAODiagnostic().insert(diag);
-	 new DAOClient().updateDiagnostique(diag,c.getCmptCompte().getEmail() );
-	 
-		if(d.isEnvoy(doc)) {
-			JOptionPane.showMessageDialog(null, "possibilite de presence : "
-			+ resu*100 + " %100 vous etes une cas d'urgence !! vos informations ont envoy�es aux autorit�s compt�tentes",
-			"Diagnostic", JOptionPane.INFORMATION_MESSAGE);
-		} else {
-			JOptionPane.showMessageDialog( null,"possibilite de presence : "
-					+ resu*100 + " %100","Diagnostic", JOptionPane.INFORMATION_MESSAGE);
-		}*/
-
-
     }
 
     public static ArrayList<Symptoms> afficheSy() throws IOException, ClassNotFoundException {
@@ -159,8 +64,7 @@ public static void rempliTable(DefaultTableModel model,Client c) {
         InputStream is = socket.getInputStream();
         ObjectInputStream ois = new ObjectInputStream(is);
         return (ArrayList<Symptoms>) ois.readObject();
-	/*//DAOSymptom daoSymptom=new DAOSymptom();
-	return daoSymptom.retreive();*/
+
     }
 
     public static ArrayList<Region> afficheRe() throws IOException, ClassNotFoundException {
@@ -190,21 +94,10 @@ public static void rempliTable(DefaultTableModel model,Client c) {
 
         oos.writeObject(cli);
 
-	/*DAOClient daoClient=new DAOClient();
-	daoClient.insert(cli);*/
     }
 
     public static void updateClient(Client c, double temp, Region reg) throws IOException, ClassNotFoundException {
-	/*c.setTempareture(temp);
-	c.setRegion(reg);
-	SocketUpdate socketUpdate = new SocketUpdate(c,temp,reg);
-	Socket socket = new Socket(host, port);
-	System.out.println("Connected.................");
-	OutputStream os = socket.getOutputStream();
-	ObjectOutputStream oos = new ObjectOutputStream(os);
-	oos.writeObject(socketUpdate);*/
-		/*DAOClient daoClient=new DAOClient();
-	daoClient.updateClient(c, temp, reg);*/
+
         charger_dia(c, temp, reg);
     }
 
@@ -238,7 +131,7 @@ return daoClient.Authentification(email, passString);*/
             Document document = new Document();
             System.out.println(c.getDiagnostics().get(idr - 1));
             try {
-                PdfWriter.getInstance(document, new FileOutputStream(c.getPrenom() + "-"+c.getNom()+"." + ext));
+                PdfWriter.getInstance(document, new FileOutputStream(c.getPrenom() + "-" + c.getNom() + "." + ext));
             } catch (FileNotFoundException | DocumentException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
@@ -392,23 +285,15 @@ return daoClient.Authentification(email, passString);*/
     }
 
 
-    public static void rempliTableRegion(DefaultTableModel model,JTable t) {
+    public static void rempliTableRegion(DefaultTableModel model, JTable t) {
         try {
-            List<Color> rowColours = Arrays.asList(
-                    Color.RED,
-                    Color.GREEN,
-                    Color.CYAN
-            );
-            CustomRenderer colouringTable = new CustomRenderer();
 
             for (Region reg : afficheRe()) {
                 model.addRow(new String[]{reg.getNom_region(), reg.getNombre_contamines() + "", reg.getNombre_deces() + "", reg.getNombre_geuris() + ""});
-                colouringTable.setColors(Color.GREEN);
                 System.out.println(reg);
             }
 
             //t.getColumnModel().getColumn(1).setCellRenderer(colouringTable);
-
 
 
         } catch (ClassNotFoundException | IOException e) {
@@ -418,27 +303,4 @@ return daoClient.Authentification(email, passString);*/
 
     }
 }
-class CustomRenderer extends DefaultTableCellRenderer
-{
-    private ArrayList<Color> desiredColors = new ArrayList<Color>();
 
-    public void setColors(Color incomingColor)
-    {
-        desiredColors.add(incomingColor);
-    }
-
-    @Override
-    public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column)
-    {
-        Component cellComponent = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-        for (int i = 0; i < 3; i++) {
-            /*if(row == i){
-                cellComponent.setBackground(desiredColors.get(i));
-            }*/
-            cellComponent.setBackground(Color.RED);
-
-        }
-
-        return cellComponent;
-    }
-}
